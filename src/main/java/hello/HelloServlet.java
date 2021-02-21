@@ -111,31 +111,37 @@ public class HelloServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String msg = "";
-        
+
         String lang = request.getParameter("lang");
         if(lang==null)
             lang = "pt";
         switch(lang){
             case "pt":
-                msg = "Alô, ";
+                msg = "Alô, %s de %s!";
                 break;
             case "en":
-                msg = "Hello, ";
+                msg = "Hello, %s from %s!";
                 break;
             case "fr":
-                msg = "Bonjour, ";
+                msg = "Bonjour, %s de %s!";
                 break;
             case "de":
-                msg = "Hallo, ";
+                msg = "Hallo, %s aus %s!";
+                break;
+            case "dk":
+                msg = "Hej, %s fra %s!";
                 break;
         }
         
         String nome = request.getParameter("nome");
+        String cidade = request.getParameter("cidade");
 
         if(nome==null)
             nome = "Fulano";
-        
-        msg = msg+nome+"!";
+        if (cidade == null)
+            cidade = "Mundo";
+
+        msg = String.format(msg, nome, cidade);
 
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
