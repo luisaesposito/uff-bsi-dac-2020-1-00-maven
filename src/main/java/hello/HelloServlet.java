@@ -134,14 +134,14 @@ public class HelloServlet extends HttpServlet {
         }
         
         String nome = request.getParameter("nome");
-        String cidade = request.getParameter("cidade");
+        String pais = request.getParameter("pais");
 
         if(nome==null)
             nome = "Fulano";
-        if (cidade == null)
-            cidade = "Mundo";
+        if (pais == null)
+            pais = "Mundo";
 
-        msg = String.format(msg, nome, cidade);
+        msg = String.format(msg, nome, pais);
 
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
